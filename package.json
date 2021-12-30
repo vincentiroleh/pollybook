@@ -1,0 +1,17 @@
+{
+  "name": "bookbank",
+  "version": "1.0.0",
+  "description": "Convert pdf to raw text, then to audio using AWS polly",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "pdf-to-text": "^0.0.7"
+  }
+}
