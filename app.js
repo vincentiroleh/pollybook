@@ -2,11 +2,14 @@ const express = require('express');
 const fs = require('fs');
 const pdf = require('pdf-parse');
 const path = require("path");
+const logger = require('morgan')
 
 // Load the SDK
 const AWS = require("aws-sdk");
 
 const app = express();
+
+app.use(logger('dev'));
 
 // Create an Polly client
 const Polly = new AWS.Polly({
@@ -14,15 +17,12 @@ const Polly = new AWS.Polly({
     region: 'us-east-1'
 });
 
-// const pdf_path = path.resolve("./books/sample.pdf");
-
-
 app.get('/', (req, res) => {
     // const pdf_path = path.resolve("./books/sample.pdf");
     let dataBuffer = fs.readFileSync('./books/sample.pdf');
     // extract text from the pdf file
    pdf(dataBuffer).then(function(data) {
-        res.send(data.text)
+        res.send(data)
     })
     .catch(function(error){
         throw (error)
@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 
 app.get('/polly', (req, res) => {
     const pdf_path = path.resolve("./books/sample.pdf");
+    const filename = pdf_path.replace(/^.*?([^\\\/]*)$/, '$1');
     pdf(pdf_path)
         .then(data => {
             let params = {
@@ -43,7 +44,7 @@ app.get('/polly', (req, res) => {
                     console.log(err.code)
                 } else if (data) {
                     if (data.AudioStream instanceof Buffer) {
-                        fs.writeFile("./book.mp3", data.AudioStream, function(err) {
+                        fs.writeFile(`./audio/${filename}.mp3`, data.AudioStream, function(err) {
                             if (err) {
                                 return console.log(err)
                             }
@@ -54,7 +55,7 @@ app.get('/polly', (req, res) => {
             })
         }).catch(err => console.log(err))
     
-})
+});
 
 
 const port = process.env.port || 8080;
