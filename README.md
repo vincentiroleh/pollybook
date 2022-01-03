@@ -1,16 +1,17 @@
-## BookPolly
+## PollyBook
 
-BookPolly is an API as a Service that allows you convert your pdf files into Audio.
+PollyBook is an API as a Service that allows you convert your pdf files into Audio.
 
 ### Tools Used
 
 - AWS Polly
+- AWS s3
 - Node.js / Express.js
 
 ---
 ## Testing
 
-> Pollybook can only process files less than or equal to `1500 characters` - We're still `under development`
+> PollyBook can only process files less than or equal to `1500 characters` - We're still `under development`
 
 **Using curl**
 
