@@ -39,7 +39,7 @@ curl -X POST -F 'file=@<FILEPATH>' https://pollybook.herokuapp.com/upload
 * Run `npm install` to install the necessary dependencies
 * Create `.env` file and update the info with the example at ['.env.example']('https://github.com/vincentiroleh/bookbank/blob/main/.env.example')
 
-### Running `app.py`
+### Running `app.js`
 
 1. Standalone:  `npm start`
 2. Run in nodemon:  `npm run dev`
