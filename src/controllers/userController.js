@@ -7,11 +7,11 @@ exports.createUser = async (request, response) => {
   let { email, password } = request.body;
   password = Bcrypt.hashSync(request.body.password, 10);
   // check for existing user
-  let existingUser = await User.findOne({ email: email });
-  if (existingUser.email === request.body.email)
+  let existingUser = await User.findOne({ email: request.body.email});
+  if (existingUser)
     return response.status(422).json({
       success: "Failed",
-      responseMessage: `User with this ${existingUser} already exist , try again with another email`,
+      responseMessage: `User with this email ${email} already exist , try again with another email`,
     });
 
   try {
