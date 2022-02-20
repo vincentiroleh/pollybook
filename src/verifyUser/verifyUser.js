@@ -2,7 +2,7 @@ require("dotenv").config();
 const Jwt = require("jsonwebtoken");
 const User = require("../model/user");
 
-exports.verifyUser = async (request, response, next) => {
+module.exports = async (request, response, next) => {
   try {
     let token = request.headers.authorization;
     //check for token
@@ -13,7 +13,8 @@ exports.verifyUser = async (request, response, next) => {
     token = token.split(" ")[1];
     let decodedToken = Jwt.verify(token, process.env.PAYLOAD_SECRET);
     let verifiedUser = await User.findOne({ email: decodedToken.email });
-    if (verifiedUser) next();
+    if (verifiedUser) 
+    next();
   } catch (error) {
     return response
       .status(401)

@@ -68,17 +68,5 @@ exports.login = async (request, response) => {
       });
   }
 
-  if (userEmail && Bcrypt.compareSync(request.body.email, userEmail.email)) {
-    const loginToken = Jwt.sign(
-      {
-        userEmail: userEmail.email,
-      },
-      process.env.SECRET_PAYLOAD
-    );
-    return respons
-      .status(200)
-      .json({ success: true, token: loginToken, user_email: userEmail.email });
-  } else {
-    return response.status(422).json({ success: false });
-  }
+  
 };

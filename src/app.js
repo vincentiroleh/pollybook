@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const logger = require("morgan");
+const routes = require('./api/router')
 
 const app = express();
 
@@ -26,13 +27,14 @@ app.use(logger("dev"));
 // setup body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(routes);
 
 // connect the database
 require("./database/db").connect();
 
 // Router
 app.get("/", (req, res) => res.json({ message: "API to the cloud... 🚀" }));
-app.use(require("./api/router"));
+
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
