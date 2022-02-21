@@ -3,7 +3,6 @@ const Mongoose = require("mongoose");
 
 module.exports = {
   connect: () => {
-    
     Mongoose.connect(process.env.DATABASE, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

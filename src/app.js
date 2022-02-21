@@ -1,11 +1,11 @@
-//require the dotenv
+// require the dotenv
 require("dotenv").config();
 // Import modules
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const logger = require("morgan");
-const routes = require('./api/router')
+const routes = require("./api/router");
 
 const app = express();
 
@@ -34,7 +34,6 @@ require("./database/db").connect();
 
 // Router
 app.get("/", (req, res) => res.json({ message: "API to the cloud... 🚀" }));
-
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

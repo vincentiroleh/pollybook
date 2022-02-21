@@ -9,6 +9,6 @@ const fileService = require("./convert");
 
 router.post("/upload", upload.single("file"), fileService.convert);
 router.post("/api/v1/create", userRoute.createUser);
-router.post("/api/v1/login", verifyUser , userRoute.login);
+router.post("/api/v1/login", verifyUser, userRoute.login);
 
 module.exports = router;
